@@ -31,12 +31,21 @@ int main()
     // Con un ciclo for hacemos que el usuario introduzca el nombre de todos sus usuarios y sus id
     for (int i = 0; i < totalEmployees; i++)
     {
-        cout << "Introduce el nombre del empleado " << i << endl;
+        cout << "Introduce el nombre del empleado " << i + 1 << endl;
         cin >> a;
         employees[i].setName(a);
 
-        cout << "Introduce la id que deseas asignar al empleado " << i << endl;
+        cout << "Introduce la id que deseas asignar al empleado " << i + 1 << endl;
         cin >> a;
+        for (int i = 0; i < totalEmployees; i++)
+        {
+            if (employees[i].getId() == a)
+            {
+                cout << "Advertencia! Si usas la misma id para 2 o mas empleados las proximas operaciones realizadas con esa id aplicaran para todos los empleados." << endl
+                     << "Confirma la Id o introduce una diferente: " << endl;
+                cin >> a;
+            }
+        }
         cout << endl;
         employees[i].setId(a);
 
@@ -54,7 +63,8 @@ int main()
         cout << "1. Consultar empleados" << endl;
         cout << "2. Modificar el salario de un empleado" << endl;
         cout << "3. Consultar la informacion de un empleado" << endl;
-        cout << "4. Salir" << endl;
+        cout << "4. Agregar un nuevo empleado" << endl;
+        cout << "5. Salir" << endl;
         cin >> option;
 
         // Con un witch accedemos a la opcion del menu que desea el usuario
@@ -68,7 +78,7 @@ int main()
             cout << "===============================" << endl;
             for (int i = 0; i < totalEmployees; i++)
             {
-                cout << "Empleado " << i << ".\n";
+                cout << "Empleado " << i + 1 << ".\n";
                 cout << "Nombre: " << employees[i].getName() << endl;
                 cout << "ID: " << employees[i].getId() << endl;
                 cout << "Salario: $" << employees[i].getSalary() << endl
@@ -110,7 +120,7 @@ int main()
             {
                 if (employees[i].getId() == a)
                 {
-                    cout << "Empleado " << i << ".\n";
+                    cout << "Empleado " << i + 1 << ".\n";
                     cout << "Nombre: " << employees[i].getName() << endl;
                     cout << "ID: " << employees[i].getId() << endl;
                     cout << "Salario: $" << employees[i].getSalary() << endl
@@ -119,6 +129,36 @@ int main()
             }
             break;
         }
+        // Agregar empleados nuevos
+        case 4:
+        {
+            cout << "===============================" << endl;
+            cout << "Agregar un nuevo empleado." << endl;
+            cout << "===============================" << endl
+                 << endl;
+            totalEmployees++;
+
+            cout << "Introduce el nombre del empleado " << totalEmployees << endl;
+            cin >> a;
+            employees[totalEmployees - 1].setName(a);
+
+            cout << "Introduce la id que deseas asignar al empleado " << totalEmployees << endl;
+            cin >> a;
+            for (int i = 0; i < totalEmployees; i++)
+            {
+                if (employees[i].getId() == a)
+                {
+                    cout << "Advertencia! Si usas la misma id para 2 o mas empleados las proximas operaciones realizadas con esa id aplicaran para todos los empleados." << endl
+                         << "Confirma la Id o introduce una diferente: " << endl;
+                    cin >> a;
+                }
+            }
+            cout << endl;
+            employees[totalEmployees - 1].setId(a);
+
+            employees[totalEmployees - 1].setSalary(salarioBase);
+        }
+        break;
         };
-    } while (option != 4);
+    } while (option != 5);
 }
