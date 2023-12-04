@@ -1,3 +1,5 @@
+// Programa de gestion de empleados: Clase de empleado
+// Marco A. Islas Brito
 #include <iostream>
 #include <string>
 using namespace std;
@@ -34,45 +36,5 @@ public:
     double getSalary()
     {
         return salary;
-    }
-};
-
-class Admin
-{
-private:
-    string user;
-    string password;
-
-public:
-    bool isPasswordCorrect(string p)
-    {
-        if (p == password)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-};
-
-class superUser
-{
-private:
-    string user;
-    string password;
-
-public:
-    bool isPasswordCorrect(string p)
-    {
-        if (p == password)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 };

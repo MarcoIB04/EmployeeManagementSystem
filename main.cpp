@@ -3,14 +3,45 @@
 #include <iostream>
 #include <string>
 #include "employee.h"
+#include "admin.h"
+#include "superUsr.h"
 using namespace std;
 
 // Creamos el main de nuestro programa
 int main()
 {
-    // Definimos el numero maximo de empleados que se van a gestionar y el numero inicial de empleados
+    Admin admin;
+    SuperUser superUsr;
+
     string a;
     int b;
+    // Creamos un menu de bienvenida con un sistema sencillo de autenticacion de contrsena
+    int failedAttempts = 1;
+    cout << "===============================" << endl;
+    cout << "BIENVENIDO" << endl;
+    cout << "===============================" << endl
+         << endl;
+    cout << "Por favor introduce la clave de administrador: " << endl;
+    cin >> a;
+
+    while (admin.isPasswordCorrect(a) == false && failedAttempts <= 3)
+    {
+        cout << "Clave incorrecta. Intenta de nuevo: " << endl;
+        cin >> a;
+        failedAttempts++;
+        if (failedAttempts >= 4)
+        {
+            do
+            {
+                cout << "Usaste la clave incorrecta demasiadas veces, para desbloquear introduce la clave de super usuario: " << endl;
+                cin >> a;
+            } while (superUsr.isPasswordCorrect(a) == false);
+            a = "adminPass";
+        }
+    }
+
+    // Definimos el numero maximo de empleados que se van a gestionar y el numero inicial de empleados
+
     int maxEmployees;
     cout << "Cual es la cantidad maxima de empleados que desea gestionar? \n";
     cin >> maxEmployees;
