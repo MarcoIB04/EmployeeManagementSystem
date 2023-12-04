@@ -96,7 +96,8 @@ int main()
         cout << "3. Consultar la informacion de un empleado" << endl;
         cout << "4. Agregar un nuevo empleado" << endl;
         cout << "5. Eliminar un empleado del sistema" << endl;
-        cout << "6. Salir" << endl;
+        cout << "6. Agregar un bono a un empleado " << endl;
+        cout << "7. Salir" << endl;
         cin >> option;
 
         // Con un witch accedemos a la opcion del menu que desea el usuario
@@ -215,6 +216,28 @@ int main()
             }
             break;
         }
+        // Dar bonos
+        case 6:
+        {
+            cout << "===============================" << endl;
+            cout << "Dar un bono a un trabajador." << endl;
+            cout << "===============================" << endl
+                 << endl;
+            cout << "Esta accion agregara la cantidad del bono al empleado seleccionado" << endl;
+            cout << "Introduzca la id del empleado al que desea dar un bono: " << endl;
+            cin >> a;
+            for (int i = 0; i < totalEmployees; i++)
+            {
+                if (employees[i].getId() == a)
+                {
+                    cout << "Cual es el monto del bono que desea asignar? " << endl;
+                    cin >> b;
+                    b = b + employees[i].getSalary();
+                    employees[i].setSalary(b);
+                }
+            }
+            break;
         }
-    } while (option != 6);
+        }
+    } while (option != 7);
 }
