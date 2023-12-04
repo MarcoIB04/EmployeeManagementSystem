@@ -64,7 +64,8 @@ int main()
         cout << "2. Modificar el salario de un empleado" << endl;
         cout << "3. Consultar la informacion de un empleado" << endl;
         cout << "4. Agregar un nuevo empleado" << endl;
-        cout << "5. Salir" << endl;
+        cout << "5. Eliminar un empleado del sistema" << endl;
+        cout << "6. Salir" << endl;
         cin >> option;
 
         // Con un witch accedemos a la opcion del menu que desea el usuario
@@ -157,8 +158,32 @@ int main()
             employees[totalEmployees - 1].setId(a);
 
             employees[totalEmployees - 1].setSalary(salarioBase);
+            break;
         }
-        break;
-        };
-    } while (option != 5);
+        // Eliminar empleados
+        case 5:
+        {
+            cout << "===============================" << endl;
+            cout << "Agregar un nuevo empleado." << endl;
+            cout << "===============================" << endl
+                 << endl;
+            cout << "Introduce la Id del empleado que deseas eliminar: " << endl;
+            cin >> a;
+            for (int i = 0; i < totalEmployees; i++)
+            {
+                if (employees[i].getId() == a)
+                {
+                    for (int e = i; e < totalEmployees; e++)
+                    {
+                        employees[e].setName(employees[e + 1].getName());
+                        employees[e].setId(employees[e + 1].getId());
+                        employees[e].setSalary(employees[e + 1].getSalary());
+                    }
+                    totalEmployees--;
+                }
+            }
+            break;
+        }
+        }
+    } while (option != 6);
 }
